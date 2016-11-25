@@ -6,7 +6,7 @@
 
 package:
   name: {{ name|lower }}
-  version: {{ version }}
+  version: {{ version }}p1
 
 source:
   fn: {{ github_name }}_{{ version }}.zip
@@ -14,15 +14,17 @@ source:
   sha256: {{ sha256 }}
   patches:
     - windows-skip-tests.patch
+    - windows-ntdll.patch
 
 build:
   number: 0
-  script: python setup.py install --single-version-externally-managed --record record.txt
+  script: python setup.py install --single-version-externally-managed --record record.txt # [not win]
 
 requirements:
   build:
     - python
     - setuptools
+    - lmdb 0.9.70b1 # [win]
   run:
     - python
 
