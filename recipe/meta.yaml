@@ -14,19 +14,19 @@ source:
   sha256: {{ sha256 }}
   patches:
     - windows-skip-tests.patch
-    - windows-ntdll.patch
 
 build:
-  number: 0
+  number: 1
   script: python setup.py install --single-version-externally-managed --record record.txt # [not win]
 
 requirements:
   build:
     - python
     - setuptools
-    - lmdb 0.9.70b1 # [win]
+    - lmdb # [win]
   run:
     - python
+    - lmdb # [win]
 
 test:
   requires:
